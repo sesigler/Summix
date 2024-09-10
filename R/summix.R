@@ -322,6 +322,7 @@ calc_scaledObj <- function(data, reference, observed, pi.start) {
   breaks <- c(0, 0.1, 0.3, 0.5)
   data$bin <- cut(data$obs, breaks = breaks, include.lowest = T, right = FALSE,
                   labels = c(1, 2, 3))
+  data <- data[complete.cases(data), ] # ADDED THIS ONE LINE; removes any rows with NA
   
   for(b in 1:3) {
     # subset data to only SNPs in given bin
